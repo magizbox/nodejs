@@ -2,13 +2,38 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Install nodejs ubuntu \n1\n\n\nsudo apt-get update\nsudo apt-get install nodejs\n\nsudo apt-get install npm\n\n\n\n\n\n\n\n\n\n\n\n\nHow To Install Node.js on an Ubuntu 14.04 server", 
+            "text": "Node.js\n\n\nNode.js is an open-source, cross-platform JavaScript runtime environment for developing a diverse variety of tools and applications. Although Node.js is not a JavaScript framework, many of its basic modules are written in JavaScript, and developers can write new modules in JavaScript. The runtime environment interprets JavaScript using Google's V8 JavaScript engine.\n\n\nNode.js has an event-driven architecture capable of asynchronous I/O. These design choices aim to optimize throughput and scalability in Web applications with many input/output operations, as well as for real-time Web applications (e.g., real-time communication programs and browser games).\n\n\nThe Node.js distributed development project, governed by the Node.js Foundation, is facilitated by the Linux Foundation's Collaborative Projects program.\n\n\nNode.js was originally written in 2009 by \nRyan Dahl\n. The initial release supported only Linux. Its development and maintenance was led by Dahl and later sponsored by Joyent.\n\n\nBooks\n\n\n\n\n\n\n\n\nCourses", 
             "title": "Home"
         }, 
         {
-            "location": "/#install-nodejs-ubuntu-1", 
+            "location": "/#nodejs", 
+            "text": "Node.js is an open-source, cross-platform JavaScript runtime environment for developing a diverse variety of tools and applications. Although Node.js is not a JavaScript framework, many of its basic modules are written in JavaScript, and developers can write new modules in JavaScript. The runtime environment interprets JavaScript using Google's V8 JavaScript engine.  Node.js has an event-driven architecture capable of asynchronous I/O. These design choices aim to optimize throughput and scalability in Web applications with many input/output operations, as well as for real-time Web applications (e.g., real-time communication programs and browser games).  The Node.js distributed development project, governed by the Node.js Foundation, is facilitated by the Linux Foundation's Collaborative Projects program.  Node.js was originally written in 2009 by  Ryan Dahl . The initial release supported only Linux. Its development and maintenance was led by Dahl and later sponsored by Joyent.", 
+            "title": "Node.js"
+        }, 
+        {
+            "location": "/#books", 
+            "text": "", 
+            "title": "Books"
+        }, 
+        {
+            "location": "/#courses", 
+            "text": "", 
+            "title": "Courses"
+        }, 
+        {
+            "location": "/installation/", 
+            "text": "Installation\n\n\nUbuntu\n\n\nsudo apt-get update\nsudo apt-get install nodejs\n\nsudo apt-get install npm\n\n\n\n\n\n\n\n\n\n\n\n\nHow To Install Node.js on an Ubuntu 14.04 server", 
+            "title": "Installation"
+        }, 
+        {
+            "location": "/installation/#installation", 
+            "text": "", 
+            "title": "Installation"
+        }, 
+        {
+            "location": "/installation/#ubuntu", 
             "text": "sudo apt-get update\nsudo apt-get install nodejs\n\nsudo apt-get install npm      How To Install Node.js on an Ubuntu 14.04 server", 
-            "title": "Install nodejs ubuntu 1"
+            "title": "Ubuntu"
         }
     ]
 }
