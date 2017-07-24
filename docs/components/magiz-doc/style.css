@@ -1,5 +1,6 @@
 body {
     background: None;
+    font-size: 15px;
 }
 
 h1 {
@@ -41,4 +42,10 @@ code {
 
 blockquote p {
     font-size: 15px;
+}
+
+.well {
+    background: None;
+    border: None;
+    box-shadow: None;
 }
