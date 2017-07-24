@@ -21,19 +21,89 @@
             "title": "Courses"
         }, 
         {
-            "location": "/installation/", 
-            "text": "Installation\n\n\nUbuntu\n\n\nsudo apt-get update\nsudo apt-get install nodejs\n\nsudo apt-get install npm\n\n\n\n\n\n\n\n\n\n\n\n\nHow To Install Node.js on an Ubuntu 14.04 server", 
-            "title": "Installation"
+            "location": "/get_started/", 
+            "text": "Installation\n\n\nWindows\n\n\nIn this section I will show you how to Install Node.js\u00ae and NPM on Windows\n\n\nPrerequisites\n\n\nNode isn\u2019t a program that you simply launch like Word or Photoshop: you won\u2019t find it pinned to the taskbar or in your list of Apps. To use Node you must type command-line instructions, so you need to be comfortable with (or at least know how to start) a command-line tool like the Windows Command Prompt, PowerShell, Cygwin, or the Git shell (which is installed along with Github for Windows).\n\n\nInstallation Overview\n\n\nInstalling Node and NPM is pretty straightforward using the installer package available from the Node.js\u00ae web site.\n\n\nInstallation Steps\n\n\n1.\n \nDownload the Windows installer\n from the \nNodes.js\u00ae\n web site.\n\n\n2.\n \nRun the installer\n (the .msi file you downloaded in the previous step.)\n\n\n3.\n \nFollow the prompts in the installer\n (Accept the license agreement, click the NEXT button a bunch of times and accept the default installation settings).\n\n\n\n\n\n\n\n\n4.\n \nRestart your computer.\n You won\u2019t be able to run Node.js\u00ae until you restart your computer.\n\n\nUbuntu\n\n\nIn this section I will show you how to Install Node.js\u00ae and NPM on Ubuntu\n\n\n# update os\nsudo apt-get update\n# install node with apt-get\nsudo apt-get install nodejs\n# install npm with apt-get\nsudo apt-get install npm\n\n\n\n\nTest\n\n\nMake sure you have Node and NPM installed by running simple commands to see what version of each is installed and to run a simple test program:\n\n\n node -v\nv6.9.5\n\n\n npm -v\n3.10.10\n\n\n\n\nSuggested Readings\n\n\n\n\nHow To Install Node.js on an Ubuntu 14.04 server\n\n\nHow to Install Node.js\u00ae and NPM on Windows", 
+            "title": "Get Started"
         }, 
         {
-            "location": "/installation/#installation", 
+            "location": "/get_started/#installation", 
             "text": "", 
             "title": "Installation"
         }, 
         {
-            "location": "/installation/#ubuntu", 
-            "text": "sudo apt-get update\nsudo apt-get install nodejs\n\nsudo apt-get install npm      How To Install Node.js on an Ubuntu 14.04 server", 
+            "location": "/get_started/#windows", 
+            "text": "In this section I will show you how to Install Node.js\u00ae and NPM on Windows", 
+            "title": "Windows"
+        }, 
+        {
+            "location": "/get_started/#prerequisites", 
+            "text": "Node isn\u2019t a program that you simply launch like Word or Photoshop: you won\u2019t find it pinned to the taskbar or in your list of Apps. To use Node you must type command-line instructions, so you need to be comfortable with (or at least know how to start) a command-line tool like the Windows Command Prompt, PowerShell, Cygwin, or the Git shell (which is installed along with Github for Windows).", 
+            "title": "Prerequisites"
+        }, 
+        {
+            "location": "/get_started/#installation-overview", 
+            "text": "Installing Node and NPM is pretty straightforward using the installer package available from the Node.js\u00ae web site.", 
+            "title": "Installation Overview"
+        }, 
+        {
+            "location": "/get_started/#installation-steps", 
+            "text": "1.   Download the Windows installer  from the  Nodes.js\u00ae  web site.  2.   Run the installer  (the .msi file you downloaded in the previous step.)  3.   Follow the prompts in the installer  (Accept the license agreement, click the NEXT button a bunch of times and accept the default installation settings).     4.   Restart your computer.  You won\u2019t be able to run Node.js\u00ae until you restart your computer.", 
+            "title": "Installation Steps"
+        }, 
+        {
+            "location": "/get_started/#ubuntu", 
+            "text": "In this section I will show you how to Install Node.js\u00ae and NPM on Ubuntu  # update os\nsudo apt-get update\n# install node with apt-get\nsudo apt-get install nodejs\n# install npm with apt-get\nsudo apt-get install npm", 
             "title": "Ubuntu"
+        }, 
+        {
+            "location": "/get_started/#test", 
+            "text": "Make sure you have Node and NPM installed by running simple commands to see what version of each is installed and to run a simple test program:   node -v\nv6.9.5  npm -v\n3.10.10", 
+            "title": "Test"
+        }, 
+        {
+            "location": "/get_started/#suggested-readings", 
+            "text": "How To Install Node.js on an Ubuntu 14.04 server  How to Install Node.js\u00ae and NPM on Windows", 
+            "title": "Suggested Readings"
+        }, 
+        {
+            "location": "/basic_syntax/", 
+            "text": "Print\n\n\nconsole.log(\nHello World\n);\n\n\n\n\nConditional\n\n\nif(you_smart){\n    console.log(\nlearn nodejs\n);\n} else {\n    console.log(\ngo away\n);\n}\n\n\n\n\nLoop\n\n\nfor(var count = 0; count \n 10; count++){\n    console.log(count);\n}\n\n\n\n\nFunction\n\n\nfunction print_info(arg1, arg2){\n    console.log(arg1);\n    console.log(arg2);\n}", 
+            "title": "Basic Syntax"
+        }, 
+        {
+            "location": "/basic_syntax/#print", 
+            "text": "console.log( Hello World );", 
+            "title": "Print"
+        }, 
+        {
+            "location": "/basic_syntax/#conditional", 
+            "text": "if(you_smart){\n    console.log( learn nodejs );\n} else {\n    console.log( go away );\n}", 
+            "title": "Conditional"
+        }, 
+        {
+            "location": "/basic_syntax/#loop", 
+            "text": "for(var count = 0; count   10; count++){\n    console.log(count);\n}", 
+            "title": "Loop"
+        }, 
+        {
+            "location": "/basic_syntax/#function", 
+            "text": "function print_info(arg1, arg2){\n    console.log(arg1);\n    console.log(arg2);\n}", 
+            "title": "Function"
+        }, 
+        {
+            "location": "/command_line/", 
+            "text": "Command Line\n\n\nPass command line arguments\n\n\nThe arguments are stored in \nprocess.argv\n\n\nHere are the node docs on handling command line args:\n\n\n\n\nprocess.argv\n is an array containing the command line arguments. The first element will be 'node', the second element will be the name of the JavaScript file. The next elements will be any additional command line arguments.\n\n\n\n\n// print process.argv\nprocess.argv.forEach(function (val, index, array) {\n  console.log(index + ': ' + val);\n});\n\n\n\n\nThis will generate:\n\n\n$ node process-2.js one two=three four\n0: node\n1: /Users/mjr/work/node/process-2.js\n2: one\n3: two=three\n4: four", 
+            "title": "Command Line"
+        }, 
+        {
+            "location": "/command_line/#command-line", 
+            "text": "", 
+            "title": "Command Line"
+        }, 
+        {
+            "location": "/command_line/#pass-command-line-arguments", 
+            "text": "The arguments are stored in  process.argv  Here are the node docs on handling command line args:   process.argv  is an array containing the command line arguments. The first element will be 'node', the second element will be the name of the JavaScript file. The next elements will be any additional command line arguments.   // print process.argv\nprocess.argv.forEach(function (val, index, array) {\n  console.log(index + ': ' + val);\n});  This will generate:  $ node process-2.js one two=three four\n0: node\n1: /Users/mjr/work/node/process-2.js\n2: one\n3: two=three\n4: four", 
+            "title": "Pass command line arguments"
         }
     ]
 }

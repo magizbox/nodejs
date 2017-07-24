@@ -3,8 +3,11 @@ site_author: "Vu Anh"
 google_analytics: ["UA-68978617-1", "magizbox.com"]
 
 pages:
-- "Home": 'index.md'
-- "Installation": 'installation.md'
+- "Home": "index.md"
+- "Get Started": "get_started.md"
+- "Tutorial":
+  - "Basic Syntax": "basic_syntax.md"
+  - "Command Line": "command_line.md"
 
 markdown_extensions:
     - footnotes
@@ -15,6 +18,7 @@ extra_css:
   - components/magiz-c-video/src/video.css
   - components/magiz-c-benchmark/src/benchmark.css
   - components/magiz-c-paper/src/paper.css
+  - components/magiz-doc/style.css
 
 extra_javascript:
   - components/underscore/underscore.js
