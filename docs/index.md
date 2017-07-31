@@ -4,7 +4,7 @@
 
 ## Table of contents
 
-This site is intended to host a variety of resources and pointers to information about Java. 
+This site is intended to host a variety of resources and pointers to information about Node.js. 
 
 [<span class="fa fa-cloud-download"></span> Get Started](get_started.md)
 
