@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Vu Anh">
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>File System & IO - Node.js</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/highlight.css">
+        <link href="../components/magiz-c-book/src/book.css" rel="stylesheet">
+        <link href="../components/magiz-c-course/src/course.css" rel="stylesheet">
+        <link href="../components/magiz-c-video/src/video.css" rel="stylesheet">
+        <link href="../components/magiz-c-benchmark/src/benchmark.css" rel="stylesheet">
+        <link href="../components/magiz-c-paper/src/paper.css" rel="stylesheet">
+        <link href="../components/magiz-doc/style.css" rel="stylesheet">
+        <link href="../components/magiz-doc/highlight.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+	
+	<script src="../js/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/highlight.pack.js"></script>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-68978617-1', 'magizbox.com');
+            ga('send', 'pageview');
+        </script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="..">Node.js</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                    <li >
+                        <a href="../get_started/">Get Started</a>
+                    </li>
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Basics <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../basic_syntax/">Basic Syntax</a>
+</li>
+                            
+<li class="active">
+    <a href="./">File System & IO</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Development <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../package_manager/">Package Manager</a>
+</li>
+                            
+<li >
+    <a href="../command_line/">Command Line</a>
+</li>
+                        </ul>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li >
+                        <a rel="next" href="../basic_syntax/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../package_manager/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#file-system-io">File System &amp; IO</a></li>
+        <li class="main "><a href="#synchronous-vs-asynchronous">Synchronous vs Asynchronous</a></li>
+        <li class="main "><a href="#open-a-file">Open a File</a></li>
+        <li class="main "><a href="#get-file-information">Get File Information</a></li>
+        <li class="main "><a href="#writing-a-file">Writing a File</a></li>
+        <li class="main "><a href="#reading-a-file">Reading a File</a></li>
+        <li class="main "><a href="#closing-a-file">Closing a File</a></li>
+        <li class="main "><a href="#truncate-a-file">Truncate a File</a></li>
+        <li class="main "><a href="#delete-a-file">Delete a File</a></li>
+        <li class="main "><a href="#create-a-directory">Create a Directory</a></li>
+        <li class="main "><a href="#read-a-directory">Read a Directory</a></li>
+        <li class="main "><a href="#remove-a-directory">Remove a Directory</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="file-system-io">File System &amp; IO</h1>
+<p>Node implements File I/O using simple wrappers around standard POSIX functions. The Node File System (fs) module can be imported using the following syntax −</p>
+<pre><code>var fs = require(&quot;fs&quot;)
+</code></pre>
+
+<h1 id="synchronous-vs-asynchronous">Synchronous vs Asynchronous</h1>
+<p>Every method in the fs module has synchronous as well as asynchronous forms. Asynchronous methods take the last parameter as the completion function callback and the first parameter of the callback function as error. It is better to use an asynchronous method instead of a synchronous method, as the former never blocks a program during its execution, whereas the second one does.</p>
+<p><strong>Example</strong></p>
+<p>Create a text file named <code>input.txt</code> with the following content −</p>
+<pre><code>Tutorials Point is giving self learning content
+to teach the world in simple and easy way!!!!!
+</code></pre>
+
+<p>Let us create a js file named <code>main.js</code> with the following code −</p>
+<pre><code>var fs = require(&quot;fs&quot;);
+
+// Asynchronous read
+fs.readFile('input.txt', function (err, data) {
+   if (err) {
+      return console.error(err);
+   }
+   console.log(&quot;Asynchronous read: &quot; + data.toString());
+});
+
+// Synchronous read
+var data = fs.readFileSync('input.txt');
+console.log(&quot;Synchronous read: &quot; + data.toString());
+
+console.log(&quot;Program Ended&quot;);
+</code></pre>
+
+<p>Now run the main.js to see the result −</p>
+<pre><code>$ node main.js
+</code></pre>
+
+<p>Verify the Output.</p>
+<pre><code>Synchronous read: Tutorials Point is giving self learning content
+to teach the world in simple and easy way!!!!!
+
+Program Ended
+Asynchronous read: Tutorials Point is giving self learning content
+to teach the world in simple and easy way!!!!!
+The following sections in this chapter provide a set of good examples on major File I/O methods.
+</code></pre>
+
+<h1 id="open-a-file">Open a File</h1>
+<p><strong>Syntax</strong></p>
+<p>Following is the syntax of the method to open a file in asynchronous mode −</p>
+<pre><code>fs.open(path, flags[, mode], callback)
+</code></pre>
+
+<p><strong>Parameters</strong></p>
+<p>Here is the description of the parameters used −</p>
+<ul>
+<li>path − This is the string having file name including path.</li>
+<li>flags − Flags indicate the behavior of the file to be opened. All possible values have been mentioned below.</li>
+<li>mode − It sets the file mode (permission and sticky bits), but only if the file was created. It defaults to 0666, readable and writeable.</li>
+<li>callback − This is the callback function which gets two arguments (err, fd).</li>
+</ul>
+<p><strong>Flags</strong></p>
+<p>Flags for read/write operations are −</p>
+<ul>
+<li>r - Open file for reading. An exception occurs if the file does not exist.</li>
+<li>r+ - Open file for reading and writing. An exception occurs if the file does not exist.</li>
+<li>rs - Open file for reading in synchronous mode.</li>
+<li>rs+ - Open file for reading and writing, asking the OS to open it synchronously. See notes for 'rs' about using this with caution.</li>
+<li>w - Open file for writing. The file is created (if it does not exist) or truncated (if it exists).</li>
+<li>wx - Like 'w' but fails if the path exists.</li>
+<li>w+ - Open file for reading and writing. The file is created (if it does not exist) or truncated (if it exists).</li>
+<li>wx+ - Like 'w+' but fails if path exists.</li>
+<li>a - Open file for appending. The file is created if it does not exist.</li>
+<li>ax - Like 'a' but fails if the path exists.</li>
+<li>a+ - Open file for reading and appending. The file is created if it does not exist.</li>
+<li>ax+ - Like 'a+' but fails if the the path exists.</li>
+</ul>
+<p><strong>Example</strong></p>
+<p>Let us create a js file named main.js having the following code to open a file input.txt for reading and writing.</p>
+<pre><code>var fs = require(&quot;fs&quot;);
+
+// Asynchronous - Opening File
+console.log(&quot;Going to open file!&quot;);
+fs.open('input.txt', 'r+', function(err, fd) {
+   if (err) {
+      return console.error(err);
+   }
+  console.log(&quot;File opened successfully!&quot;);     
+});
+</code></pre>
+
+<p>Now run the main.js to see the result −</p>
+<pre><code>$ node main.js
+</code></pre>
+
+<p>Verify the Output.</p>
+<pre><code>Going to open file!
+File opened successfully!
+</code></pre>
+
+<h1 id="get-file-information">Get File Information</h1>
+<p><strong>Syntax</strong></p>
+<p>Following is the syntax of the method to get the information about a file −</p>
+<pre><code>fs.stat(path, callback)
+</code></pre>
+
+<p><strong>Parameters</strong></p>
+<p>Here is the description of the parameters used −</p>
+<ul>
+<li><em>path</em> − This is the string having file name including path.</li>
+<li><em>callback</em> − This is the callback function which gets two arguments (err, stats) where stats is an object of fs.Stats type which is printed below in the example.</li>
+</ul>
+<p>Apart from the important attributes which are printed below in the example, there are several useful methods available in fs.Stats class which can be used to check file type. These methods are given in the following table.</p>
+<p>Method  Description</p>
+<ul>
+<li>stats.isFile() - Returns true if file type of a simple file.</li>
+<li>stats.isDirectory() - Returns true if file type of a directory.</li>
+<li>stats.isBlockDevice() - Returns true if file type of a block device.</li>
+<li>stats.isCharacterDevice() - Returns true if file type of a character device.</li>
+<li>stats.isSymbolicLink() - Returns true if file type of a symbolic link.</li>
+<li>stats.isFIFO() - Returns true if file type of a FIFO.</li>
+<li>stats.isSocket() - Returns true if file type of asocket.</li>
+</ul>
+<p><strong>Example</strong></p>
+<p>Let us create a js file named main.js with the following code −</p>
+<pre><code>var fs = require(&quot;fs&quot;);
+
+console.log(&quot;Going to get file info!&quot;);
+fs.stat('input.txt', function (err, stats) {
+   if (err) {
+       return console.error(err);
+   }
+   console.log(stats);
+   console.log(&quot;Got file info successfully!&quot;);
+
+   // Check file type
+   console.log(&quot;isFile ? &quot; + stats.isFile());
+   console.log(&quot;isDirectory ? &quot; + stats.isDirectory());    
+});
+</code></pre>
+
+<p>Now run the main.js to see the result −</p>
+<pre><code>$ node main.js
+</code></pre>
+
+<p>Verify the Output.</p>
+<pre><code>Going to get file info!
+{ 
+   dev: 1792,
+   mode: 33188,
+   nlink: 1,
+   uid: 48,
+   gid: 48,
+   rdev: 0,
+   blksize: 4096,
+   ino: 4318127,
+   size: 97,
+   blocks: 8,
+   atime: Sun Mar 22 2015 13:40:00 GMT-0500 (CDT),
+   mtime: Sun Mar 22 2015 13:40:57 GMT-0500 (CDT),
+   ctime: Sun Mar 22 2015 13:40:57 GMT-0500 (CDT) 
+}
+Got file info successfully!
+isFile ? true
+isDirectory ? false
+</code></pre>
+
+<h1 id="writing-a-file">Writing a File</h1>
+<p><strong>Syntax</strong></p>
+<p>Following is the syntax of one of the methods to write into a file −</p>
+<pre><code>fs.writeFile(filename, data[, options], callback)
+</code></pre>
+
+<p>This method will over-write the file if the file already exists. If you want to write into an existing file then you should use another method available.</p>
+<p><strong>Parameters</strong></p>
+<p>Here is the description of the parameters used −</p>
+<ul>
+<li>path − This is the string having the file name including path.</li>
+<li>data − This is the String or Buffer to be written into the file.</li>
+<li>options − The third parameter is an object which will hold {encoding, mode, flag}. By default. encoding is utf8, mode is octal value 0666. and flag is 'w'</li>
+<li>callback − This is the callback function which gets a single parameter err that returns an error in case of any writing error.</li>
+</ul>
+<p><strong>Example</strong></p>
+<p>Let us create a js file named <code>main.js</code> having the following code −</p>
+<pre><code>var fs = require(&quot;fs&quot;);
+
+console.log(&quot;Going to write into existing file&quot;);
+fs.writeFile('input.txt', 'Simply Easy Learning!',  function(err) {
+   if (err) {
+      return console.error(err);
+   }
+
+   console.log(&quot;Data written successfully!&quot;);
+   console.log(&quot;Let's read newly written data&quot;);
+   fs.readFile('input.txt', function (err, data) {
+      if (err) {
+         return console.error(err);
+      }
+      console.log(&quot;Asynchronous read: &quot; + data.toString());
+   });
+});
+</code></pre>
+
+<p>Now run the main.js to see the result −</p>
+<pre><code>$ node main.js
+</code></pre>
+
+<p>Verify the Output.</p>
+<pre><code>Going to write into existing file
+Data written successfully!
+Let's read newly written data
+Asynchronous read: Simply Easy Learning!
+</code></pre>
+
+<h1 id="reading-a-file">Reading a File</h1>
+<p><strong>Syntax</strong></p>
+<p>Following is the syntax of one of the methods to read from a file −</p>
+<pre><code>fs.read(fd, buffer, offset, length, position, callback)
+</code></pre>
+
+<p>This method will use file descriptor to read the file. If you want to read the file directly using the file name, then you should use another method available.</p>
+<p><strong>Parameters</strong></p>
+<p>Here is the description of the parameters used −</p>
+<ul>
+<li>fd − This is the file descriptor returned by fs.open().</li>
+<li>buffer − This is the buffer that the data will be written to.</li>
+<li>offset − This is the offset in the buffer to start writing at.</li>
+<li>length − This is an integer specifying the number of bytes to read.</li>
+<li>position − This is an integer specifying where to begin reading from in the file. * If position is null, data will be read from the current file position.
+callback − This is the callback function which gets the three arguments, (err, bytesRead, buffer).</li>
+</ul>
+<p><strong>Example</strong></p>
+<p>Let us create a js file named main.js with the following code −</p>
+<pre><code>var fs = require(&quot;fs&quot;);
+var buf = new Buffer(1024);
+
+console.log(&quot;Going to open an existing file&quot;);
+fs.open('input.txt', 'r+', function(err, fd) {
+   if (err) {
+      return console.error(err);
+   }
+   console.log(&quot;File opened successfully!&quot;);
+   console.log(&quot;Going to read the file&quot;);
+   fs.read(fd, buf, 0, buf.length, 0, function(err, bytes){
+      if (err){
+         console.log(err);
+      }
+      console.log(bytes + &quot; bytes read&quot;);
+
+      // Print only read bytes to avoid junk.
+      if(bytes &gt; 0){
+         console.log(buf.slice(0, bytes).toString());
+      }
+   });
+});
+</code></pre>
+
+<p>Now run the main.js to see the result −</p>
+<pre><code>$ node main.js
+</code></pre>
+
+<p>Verify the Output.</p>
+<pre><code>Going to open an existing file
+File opened successfully!
+Going to read the file
+97 bytes read
+Tutorials Point is giving self learning content
+to teach the world in simple and easy way!!!!!
+</code></pre>
+
+<h1 id="closing-a-file">Closing a File</h1>
+<p><strong>Syntax</strong></p>
+<p>Following is the syntax to close an opened file −</p>
+<pre><code>fs.close(fd, callback)
+</code></pre>
+
+<p><strong>Parameters</strong></p>
+<p>Here is the description of the parameters used −</p>
+<ul>
+<li>fd − This is the file descriptor returned by file fs.open() method.</li>
+<li>callback − This is the callback function No arguments other than a possible exception are given to the completion callback.</li>
+</ul>
+<p><strong>Example</strong>
+Let us create a js file named <code>main.js</code> having the following code −</p>
+<pre><code>var fs = require(&quot;fs&quot;);
+var buf = new Buffer(1024);
+
+console.log(&quot;Going to open an existing file&quot;);
+fs.open('input.txt', 'r+', function(err, fd) {
+   if (err) {
+      return console.error(err);
+   }
+   console.log(&quot;File opened successfully!&quot;);
+   console.log(&quot;Going to read the file&quot;);
+
+   fs.read(fd, buf, 0, buf.length, 0, function(err, bytes){
+      if (err){
+         console.log(err);
+      }
+
+      // Print only read bytes to avoid junk.
+      if(bytes &gt; 0){
+         console.log(buf.slice(0, bytes).toString());
+      }
+
+      // Close the opened file.
+      fs.close(fd, function(err){
+         if (err){
+            console.log(err);
+         } 
+         console.log(&quot;File closed successfully.&quot;);
+      });
+   });
+});
+</code></pre>
+
+<p>Now run the <code>main.js</code> to see the result −</p>
+<pre><code>$ node main.js
+</code></pre>
+
+<p>Verify the Output.</p>
+<pre><code>Going to open an existing file
+File opened successfully!
+Going to read the file
+Tutorials Point is giving self learning content
+to teach the world in simple and easy way!!!!!
+
+File closed successfully.
+</code></pre>
+
+<h1 id="truncate-a-file">Truncate a File</h1>
+<p><strong>Syntax</strong></p>
+<p>Following is the syntax of the method to truncate an opened file −</p>
+<pre><code>fs.ftruncate(fd, len, callback)
+</code></pre>
+
+<p><strong>Parameters</strong></p>
+<p>Here is the description of the parameters used −</p>
+<ul>
+<li>fd − This is the file descriptor returned by fs.open().</li>
+<li>len − This is the length of the file after which the file will be truncated.</li>
+<li>callback − This is the callback function No arguments other than a possible ekxception are given to the completion callback.</li>
+</ul>
+<p><strong>Example</strong></p>
+<p>Let us create a js file named <code>main.js</code> having the following code −</p>
+<pre><code>var fs = require(&quot;fs&quot;);
+var buf = new Buffer(1024);
+
+console.log(&quot;Going to open an existing file&quot;);
+fs.open('input.txt', 'r+', function(err, fd) {
+   if (err) {
+      return console.error(err);
+   }
+   console.log(&quot;File opened successfully!&quot;);
+   console.log(&quot;Going to truncate the file after 10 bytes&quot;);
+
+   // Truncate the opened file.
+   fs.ftruncate(fd, 10, function(err){
+      if (err){
+         console.log(err);
+      } 
+      console.log(&quot;File truncated successfully.&quot;);
+      console.log(&quot;Going to read the same file&quot;); 
+
+      fs.read(fd, buf, 0, buf.length, 0, function(err, bytes){
+         if (err){
+            console.log(err);
+         }
+
+         // Print only read bytes to avoid junk.
+         if(bytes &gt; 0){
+            console.log(buf.slice(0, bytes).toString());
+         }
+
+         // Close the opened file.
+         fs.close(fd, function(err){
+            if (err){
+               console.log(err);
+            } 
+            console.log(&quot;File closed successfully.&quot;);
+         });
+      });
+   });
+});
+</code></pre>
+
+<p>Now run the main.js to see the result −</p>
+<pre><code>$ node main.js
+</code></pre>
+
+<p>Verify the Output.</p>
+<pre><code>Going to open an existing file
+File opened successfully!
+Going to truncate the file after 10 bytes
+File truncated successfully.
+Going to read the same file
+Tutorials 
+File closed successfully.
+</code></pre>
+
+<h1 id="delete-a-file">Delete a File</h1>
+<p><strong>Syntax</strong>
+Following is the syntax of the method to delete a file −</p>
+<pre><code>fs.unlink(path, callback)
+</code></pre>
+
+<p><strong>Parameters</strong></p>
+<p>Here is the description of the parameters used −</p>
+<ul>
+<li>path − This is the file name including path.</li>
+<li>callback − This is the callback function No arguments other than a possible exception are given to the completion callback.</li>
+</ul>
+<p><strong>Example</strong></p>
+<p>Let us create a js file named main.js having the following code −</p>
+<pre><code>var fs = require(&quot;fs&quot;);
+
+console.log(&quot;Going to delete an existing file&quot;);
+fs.unlink('input.txt', function(err) {
+   if (err) {
+      return console.error(err);
+   }
+   console.log(&quot;File deleted successfully!&quot;);
+});
+</code></pre>
+
+<p>Now run the main.js to see the result −</p>
+<pre><code>$ node main.js
+</code></pre>
+
+<p>Verify the Output.</p>
+<pre><code>Going to delete an existing file
+File deleted successfully!
+</code></pre>
+
+<h1 id="create-a-directory">Create a Directory</h1>
+<p><strong>Syntax</strong></p>
+<p>Following is the syntax of the method to create a directory −</p>
+<pre><code>fs.mkdir(path[, mode], callback)
+</code></pre>
+
+<p><strong>Parameters</strong></p>
+<p>Here is the description of the parameters used −</p>
+<ul>
+<li>path − This is the directory name including path.</li>
+<li>mode − This is the directory permission to be set. Defaults to 0777.</li>
+<li>callback − This is the callback function No arguments other than a possible exception are given to the completion callback.</li>
+</ul>
+<p><strong>Example</strong></p>
+<p>Let us create a js file named main.js having the following code −</p>
+<pre><code>var fs = require(&quot;fs&quot;);
+
+console.log(&quot;Going to create directory /tmp/test&quot;);
+fs.mkdir('/tmp/test',function(err){
+   if (err) {
+      return console.error(err);
+   }
+   console.log(&quot;Directory created successfully!&quot;);
+});
+</code></pre>
+
+<p>Now run the main.js to see the result −</p>
+<pre><code>$ node main.js
+</code></pre>
+
+<p>Verify the Output.</p>
+<pre><code>Going to create directory /tmp/test
+Directory created successfully!
+</code></pre>
+
+<h1 id="read-a-directory">Read a Directory</h1>
+<p><strong>Syntax</strong></p>
+<p>Following is the syntax of the method to read a directory −</p>
+<pre><code>fs.readdir(path, callback)
+</code></pre>
+
+<p><strong>Parameters</strong></p>
+<p>Here is the description of the parameters used −</p>
+<ul>
+<li>path − This is the directory name including path.</li>
+<li>callback − This is the callback function which gets two arguments (err, files) where files is an array of the names of the files in the directory excluding '.' and '..'.</li>
+</ul>
+<p><strong>Example</strong></p>
+<p>Let us create a js file named main.js having the following code −</p>
+<pre><code>var fs = require(&quot;fs&quot;);
+
+console.log(&quot;Going to read directory /tmp&quot;);
+fs.readdir(&quot;/tmp/&quot;,function(err, files){
+   if (err) {
+      return console.error(err);
+   }
+   files.forEach( function (file){
+      console.log( file );
+   });
+});
+</code></pre>
+
+<p>Now run the main.js to see the result −</p>
+<pre><code>$ node main.js
+</code></pre>
+
+<p>Verify the Output.</p>
+<pre><code>Going to read directory /tmp
+ccmzx99o.out
+ccyCSbkF.out
+employee.ser
+hsperfdata_apache
+test
+test.txt
+</code></pre>
+
+<h1 id="remove-a-directory">Remove a Directory</h1>
+<p><strong>Syntax</strong></p>
+<p>Following is the syntax of the method to remove a directory −</p>
+<pre><code>fs.rmdir(path, callback)
+</code></pre>
+
+<p><strong>Parameters</strong></p>
+<p>Here is the description of the parameters used −</p>
+<ul>
+<li>path − This is the directory name including path.</li>
+<li>callback − This is the callback function No argume nts other than a possible exception are given to the completion callback.</li>
+</ul>
+<p><strong>Example</strong></p>
+<p>Let us create a js file named main.js having the following code −</p>
+<pre><code>var fs = require(&quot;fs&quot;);
+
+console.log(&quot;Going to delete directory /tmp/test&quot;);
+fs.rmdir(&quot;/tmp/test&quot;,function(err){
+   if (err) {
+      return console.error(err);
+   }
+   console.log(&quot;Going to read directory /tmp&quot;);
+
+   fs.readdir(&quot;/tmp/&quot;,function(err, files){
+      if (err) {
+         return console.error(err);
+      }
+      files.forEach( function (file){
+         console.log( file );
+      });
+   });
+});
+</code></pre>
+
+<p>Now run the main.js to see the result −</p>
+<pre><code>$ node main.js
+</code></pre>
+
+<p>Verify the Output.</p>
+<pre><code>Going to read directory /tmp
+ccmzx99o.out
+ccyCSbkF.out
+employee.ser
+hsperfdata_apache
+test.txt
+</code></pre></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '..';</script>
+        <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+        <script src="../js/base.js"></script>
+        <script src="../components/underscore/underscore.js"></script>
+        <script src="../components/magiz-c-book/src/gspreadsheet.js"></script>
+        <script src="../components/magiz-c-paper/src/paper.js"></script>
+        <script src="../components/magiz-c-course/src/course.js"></script>
+        <script src="../components/magiz-c-benchmark/src/benchmark.js"></script>
+        <script src="../components/magiz-c-benchmark/src/bootstrap-popup.js"></script>
+        <script src="../components/magiz-c-book/src/book.js"></script>
+        <script src="../components/magiz-c-video/src/video.js"></script>
+        <script src="../components/jquery/dist/jquery.js"></script>
+        <script src="../components/magiz-doc/doc.js"></script>
+        <script src="../components/magiz-doc/footer.js"></script>
+        <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

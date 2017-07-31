@@ -8,7 +8,7 @@
         <meta name="author" content="Vu Anh">
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Basic Syntax - NodeJSTutorial</title>
+        <title>Basic Syntax - Node.js</title>
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.5.0.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -19,6 +19,7 @@
         <link href="../components/magiz-c-benchmark/src/benchmark.css" rel="stylesheet">
         <link href="../components/magiz-c-paper/src/paper.css" rel="stylesheet">
         <link href="../components/magiz-doc/style.css" rel="stylesheet">
+        <link href="../components/magiz-doc/highlight.css" rel="stylesheet">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -53,7 +54,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="..">NodeJSTutorial</a>
+            <a class="navbar-brand" href="..">Node.js</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -67,11 +68,24 @@
                         <a href="../get_started/">Get Started</a>
                     </li>
                     <li class="dropdown active">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorial <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Basics <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             
 <li class="active">
     <a href="./">Basic Syntax</a>
+</li>
+                            
+<li >
+    <a href="../io/">File System & IO</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Development <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../package_manager/">Package Manager</a>
 </li>
                             
 <li >
@@ -93,7 +107,7 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../command_line/">
+                        <a rel="prev" href="../io/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -153,7 +167,11 @@
         <script src="../components/magiz-c-benchmark/src/benchmark.js"></script>
         <script src="../components/magiz-c-benchmark/src/bootstrap-popup.js"></script>
         <script src="../components/magiz-c-book/src/book.js"></script>
-        <script src="../components/magiz-c-video/src/video.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <script src="../components/magiz-c-video/src/video.js"></script>
+        <script src="../components/jquery/dist/jquery.js"></script>
+        <script src="../components/magiz-doc/doc.js"></script>
+        <script src="../components/magiz-doc/footer.js"></script>
+        <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

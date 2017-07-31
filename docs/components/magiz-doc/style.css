@@ -49,3 +49,16 @@ blockquote p {
     border: None;
     box-shadow: None;
 }
+footer {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 200;
+    visibility: hidden;
+}
+
+.nav a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 14px;
+}

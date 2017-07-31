@@ -8,7 +8,7 @@
         <meta name="author" content="Vu Anh">
         
         <link rel="shortcut icon" href="./img/favicon.ico">
-        <title>NodeJSTutorial</title>
+        <title>Node.js</title>
         <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="./css/font-awesome-4.5.0.css" rel="stylesheet">
         <link href="./css/base.css" rel="stylesheet">
@@ -19,6 +19,7 @@
         <link href="./components/magiz-c-benchmark/src/benchmark.css" rel="stylesheet">
         <link href="./components/magiz-c-paper/src/paper.css" rel="stylesheet">
         <link href="./components/magiz-doc/style.css" rel="stylesheet">
+        <link href="./components/magiz-doc/highlight.css" rel="stylesheet">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -53,7 +54,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href=".">NodeJSTutorial</a>
+            <a class="navbar-brand" href=".">Node.js</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -67,11 +68,24 @@
                         <a href="get_started/">Get Started</a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorial <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Basics <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             
 <li >
     <a href="basic_syntax/">Basic Syntax</a>
+</li>
+                            
+<li >
+    <a href="io/">File System & IO</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Development <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="package_manager/">Package Manager</a>
 </li>
                             
 <li >
@@ -105,18 +119,71 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#nodejs">Node.js</a></li>
+        <li class="main active"><a href="#nodejs-tutorial-by-mg">Node.js Tutorial by MG</a></li>
+        <li class="main "><a href="#table-of-contents">Table of contents</a></li>
+            <li><a href="#learn-basic">Learn Basic</a></li>
+            <li><a href="#classes-and-inheritance">Classes and Inheritance</a></li>
+            <li><a href="#go-deeper">Go Deeper</a></li>
+            <li><a href="#software-development">Software Development</a></li>
+            <li><a href="#miscellaneous">Miscellaneous</a></li>
             <li><a href="#books">Books</a></li>
             <li><a href="#courses">Courses</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="nodejs">Node.js</h1>
-<p>Node.js is an open-source, cross-platform JavaScript runtime environment for developing a diverse variety of tools and applications. Although Node.js is not a JavaScript framework, many of its basic modules are written in JavaScript, and developers can write new modules in JavaScript. The runtime environment interprets JavaScript using Google's V8 JavaScript engine.</p>
-<p>Node.js has an event-driven architecture capable of asynchronous I/O. These design choices aim to optimize throughput and scalability in Web applications with many input/output operations, as well as for real-time Web applications (e.g., real-time communication programs and browser games).</p>
-<p>The Node.js distributed development project, governed by the Node.js Foundation, is facilitated by the Linux Foundation's Collaborative Projects program.</p>
-<p>Node.js was originally written in 2009 by <code>Ryan Dahl</code>. The initial release supported only Linux. Its development and maintenance was led by Dahl and later sponsored by Joyent.</p>
+<h1 id="nodejs-tutorial-by-mg">Node.js Tutorial <sup><i><a href="http://magizbox.com/">by MG</a></i></sup></h1>
+<blockquote>
+<p>Node.js is an open-source, cross-platform JavaScript runtime environment for developing a diverse variety of tools and applications. Although Node.js is not a JavaScript framework, many of its basic modules are written in JavaScript, and developers can write new modules in JavaScript. The runtime environment interprets JavaScript using Google's V8 JavaScript engine. Node.js has an event-driven architecture capable of asynchronous I/O. These design choices aim to optimize throughput and scalability in Web applications with many input/output operations, as well as for real-time Web applications (e.g., real-time communication programs and browser games). Node.js was originally written in 2009 by Ryan Dahl. The initial release supported only Linux. Its development and maintenance was led by Dahl and later sponsored by Joyent.</p>
+</blockquote>
+<h1 id="table-of-contents">Table of contents</h1>
+<p>This site is intended to host a variety of resources and pointers to information about Java. </p>
+<p><a href="get_started/"><span class="fa fa-cloud-download"></span> Get Started</a></p>
+<h2 id="learn-basic">Learn Basic</h2>
+<ul>
+<li><a href="basic_syntax/">Basic Syntax: conditional, loop, function</a></li>
+<li>Data Structure: number</li>
+<li>Data Structure: string</li>
+<li>Data Structure: collection </li>
+<li>Data Structure: datetime</li>
+</ul>
+<h2 id="classes-and-inheritance">Classes and Inheritance</h2>
+<ul>
+<li>Classes and Objects</li>
+<li>Constructors</li>
+<li>Encapsulation</li>
+<li>Inheritance</li>
+<li>Polymorphism</li>
+<li>Abstraction</li>
+</ul>
+<h2 id="go-deeper">Go Deeper</h2>
+<ul>
+<li><a href="io/">Files &amp; IO</a></li>
+<li>Operating System Programming</li>
+<li>Networking Programming</li>
+<li>Concurrency and Parallelism Programming</li>
+<li>Event Based Programming</li>
+<li>Web Development</li>
+</ul>
+<h2 id="software-development">Software Development</h2>
+<ul>
+<li>Error Handling</li>
+<li>Logging</li>
+<li>Configuration</li>
+<li><a href="command_line/">Command Line</a></li>
+<li>Testing</li>
+<li>IDE</li>
+<li><a href="package_manager/">Package Manager</a></li>
+<li>Build Tool</li>
+<li>Environment</li>
+<li>Module</li>
+<li>Production</li>
+</ul>
+<h2 id="miscellaneous">Miscellaneous</h2>
+<ul>
+<li><a href="#books">Books</a></li>
+<li><a href="#courses">Courses</a></li>
+</ul>
 <h2 id="books">Books</h2>
 <div class="books" gid="1U-R9ba2wBN_qVKdNuRtx7e7TigmfvEjqC3tdnaB1yHw"></div>
 
@@ -140,7 +207,11 @@
         <script src="./components/magiz-c-benchmark/src/benchmark.js"></script>
         <script src="./components/magiz-c-benchmark/src/bootstrap-popup.js"></script>
         <script src="./components/magiz-c-book/src/book.js"></script>
-        <script src="./components/magiz-c-video/src/video.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <script src="./components/magiz-c-video/src/video.js"></script>
+        <script src="./components/jquery/dist/jquery.js"></script>
+        <script src="./components/magiz-doc/doc.js"></script>
+        <script src="./components/magiz-doc/footer.js"></script>
+        <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -170,5 +241,5 @@
 
 <!--
 MkDocs version : 0.16.1
-Build Date UTC : 2017-07-24 08:32:19
+Build Date UTC : 2017-07-31 04:04:18
 -->

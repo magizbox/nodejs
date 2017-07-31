@@ -1,16 +1,20 @@
-site_name: NodeJSTutorial
+site_name: Node.js
 site_author: "Vu Anh"
 google_analytics: ["UA-68978617-1", "magizbox.com"]
 
 pages:
 - "Home": "index.md"
 - "Get Started": "get_started.md"
-- "Tutorial":
+- "Basics":
   - "Basic Syntax": "basic_syntax.md"
+  - "File System & IO": "io.md"
+- "Development":
+  - "Package Manager": "package_manager.md"
   - "Command Line": "command_line.md"
 
 markdown_extensions:
     - footnotes
+    - mdx_math
 
 extra_css:
   - components/magiz-c-book/src/book.css
@@ -19,6 +23,7 @@ extra_css:
   - components/magiz-c-benchmark/src/benchmark.css
   - components/magiz-c-paper/src/paper.css
   - components/magiz-doc/style.css
+  - components/magiz-doc/highlight.css
 
 extra_javascript:
   - components/underscore/underscore.js
@@ -29,4 +34,7 @@ extra_javascript:
   - components/magiz-c-benchmark/src/bootstrap-popup.js
   - components/magiz-c-book/src/book.js
   - components/magiz-c-video/src/video.js
-
+  - components/jquery/dist/jquery.js
+  - components/magiz-doc/doc.js
+  - components/magiz-doc/footer.js
+  - http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
